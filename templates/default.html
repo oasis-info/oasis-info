@@ -1,7 +1,8 @@
 $$$
 breadcrumbs() {
   relurl=""
-  for crumb in ${PATH_INFO//\// }; do
+  local IFS='/'
+  for crumb in ${PATH_INFO:1}; do
     relurl="$relurl/$crumb"
     echo "&gt;"
     echo "<a $(attr href "$relurl")>$(e "$crumb")</a>"
