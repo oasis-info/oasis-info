@@ -1,0 +1,48 @@
+$$$
+breadcrumbs() {
+  relurl=""
+  for crumb in ${PATH_INFO//\// }; do
+    relurl="$relurl/$crumb"
+    echo "&gt;"
+    echo "<a $(attr href "$relurl")>$(e "$crumb")</a>"
+  done
+}
+$$$
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/util.js"></script>
+  <title>
+$> e "$title"
+  | Oasis Info
+  </title>
+</head>
+
+
+<body>
+  <header>
+    <h1> Oasis Info </h1>
+    <button id="dark_toggle" onclick="toggleDark()" class="hide"> Dark mode </button>
+  </header>
+
+  <nav id="topnav">
+    <a href="/">Home</a>
+    <a href="/gigs">Gigs</a>
+    <a href="/something_else">Something Else</a>
+  </nav>
+
+  <nav id="breadcrumbs">
+$> breadcrumbs
+  </nav>
+
+$> echo "$content"
+
+  <footer>
+    <p> &copy; 2020 Joshua Page </p>
+  </footer>
+</body>
+<script> onLoad(); </script>
+</html>
